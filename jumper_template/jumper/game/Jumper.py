@@ -1,5 +1,7 @@
 
-
+#life total
+#Lose conditions
+#draw jumper
 
 class Jumper:
     

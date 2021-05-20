@@ -1,4 +1,6 @@
 
+#grab word from the file
+#track word guessing
 
 
 class Word:
