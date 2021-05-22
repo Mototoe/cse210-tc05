@@ -17,7 +17,6 @@ class Word:
         infile.close()
         word = random.choice(lines)
         self.word = word[:-1]
-        print(word)
         return self.word
 
     def print_word(self):

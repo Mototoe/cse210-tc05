@@ -2243,13 +2243,11 @@ eastern
 easy
 eat
 eating
-eau
 ebay
 ebony
 ebook
 echo
 eclipse
-eco
 ecological
 ecology
 ecommerce
@@ -6695,7 +6693,6 @@ store
 stored
 storm
 story
-str
 straight
 strain
 strand
@@ -6820,7 +6817,6 @@ supporting
 suppose
 supposed
 supreme
-sur
 sure
 surely
 surf
