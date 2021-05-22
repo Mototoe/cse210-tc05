@@ -1,50 +1,10 @@
-from game.Jumper import Jumper
-from game.Word import Word
-from game.Director import Director
-
-
-# takes input from director
-
 class Console:
-    """A code template for a computer console. The responsibility of this 
-    class of objects is to get text or numerical input and display text output.
-    
-    Stereotype:
-        Service Provider, Interfacer
+    """Will display thing but with extra steps..."""
 
-    Attributes:
-        prompt (string): The prompt to display on each line.
-    """
-     
     def read(self, prompt):
-        """Gets text input from the user through the screen.
-
-        Args: 
-            self (Screen): An instance of Screen.
-            prompt (string): The prompt to display to the user.
-
-        Returns:
-            string: The user's input as text.
-        """
+        """Will take in a parameter and return it with an input"""
         return input(prompt)
 
-    def read_letter(self, prompt):
-        """Gets numerical input from the user through the screen.
-
-        Args: 
-            self (Screen): An instance of Screen.
-            prompt (string): The prompt to display to the user.
-
-        Returns:
-            float: The user's input as a float.
-        """
-        return float(input(prompt))
-        
     def write(self, text):
-        """Displays the given text on the screen. 
-
-        Args: 
-            self (Screen): An instance of Screen.
-            text (string): The text to display.
-        """
+        """Will take in a parameter and return it with an print statement"""
         print(text)

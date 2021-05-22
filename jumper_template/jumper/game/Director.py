@@ -1,73 +1,51 @@
+from game.console import Console
+from game.jumper import Jumper
+from game.word import Word
 
-
-from game.Console import Console
-from game.Jumper import Jumper
-from game.Word import Word
 
 class Director:
-    """A code template for a person who directs the game. The responsibility of 
-    this class of objects is to control the sequence of play.
-    
-    Stereotype:
-        Controller
-
-    Attributes:
-        console (Console): An instance of the class of objects known as Console.
-        keep_playing (boolean): Whether or not the game can continue.
-        hunter (Hunter): An instance of the class of objects known as Hunter.
-        rabbit (Rabbit): An instance of the class of objects known as Rabbit.
-    """
+    """Director class engine of the program"""
 
     def __init__(self):
-        """The class constructor.
-        
-        Args:
-            self (Director): an instance of Director.
-        """
+        """States the variables we will use"""
+
+        self.lives = 4
         self.console = Console()
-        self.Jumper = Jumper()
-        self.keep_playing = True
-        self.Word = Word()
-        
+        self.jumper = Jumper()
+        self.word = Word()
+
     def start_game(self):
-        """Starts the game loop to control the sequence of play.
-        
-        Args:
-            self (Director): an instance of Director.
-        """
-        while self.keep_playing:
-            self.get_inputs()
-            self.do_updates()
-            self.do_outputs()
+        """Starts the game"""
 
-    def get_inputs(self):
-        """Gets the inputs at the beginning of each round of play. In this case,
-        that means moving the hunter to a new location.
+        self.console.write("Hello welcome to Jumper")
+        # Get a word
+        self.word.get_word()
 
-        Args:
-            self (Director): An instance of Director.
-        """
-        message = self.hunter.get_message()
-        self.console.write(message)
-        location = self.console.read_number("Enter a location [1-1000]: ")
-        self.hunter.move(location)
-        
-    def do_updates(self):
-        """Updates the important game information for each round of play. In 
-        this case, that means the rabbit watches the hunter.
+        while self.lives >= 0:
+            # Display word
+            result = self.word.print_word()
+            if result:
+                self.console.write(
+                    "Congratulations you guessed the word correctly")
+                break
 
-        Args:
-            self (Director): An instance of Director.
-        """
-        self.rabbit.watch(self.hunter.location)
-        
-    def do_outputs(self):
-        """Outputs the important game information for each round of play. In 
-        this case, that means the rabbit provides a hint.
+            # Display the Jumper
+            self.console.write(self.jumper.get_parachute(self.lives))
 
-        Args:
-            self (Director): An instance of Director.
-        """
-        hint = self.rabbit.get_hint()
-        self.console.write(hint)
-        self.keep_playing = (self.rabbit.distance[-1] != 0)
+            # Check if you lose
+            if not self.lives:
+                self.console.write("You killed him")
+                break
+
+            # Ask for a Guess
+            guess = self.console.read("Guess a letter [a-z]: ")
+
+            # Filters input
+            result = self.word.check_guess(guess)
+            if not result:
+                continue
+
+            # Saves guess and updates life
+            result = self.word.save_guess(guess)
+            if not result:
+                self.lives -= 1
