@@ -1,6 +1,6 @@
 from game.Jumper import Jumper
 from game.Word import Word
-from game.Director import director
+from game.Director import Director
 
 
 # takes input from director
@@ -28,7 +28,7 @@ class Console:
         """
         return input(prompt)
 
-    def read_number(self, prompt):
+    def read_letter(self, prompt):
         """Gets numerical input from the user through the screen.
 
         Args: 
